@@ -1,0 +1,17 @@
+name: " Django dependencies package installer"
+description: "Install pip and packages for django project"
+
+inputs:
+  requirements:
+    description: "File requirements"
+    required: false
+    default: requirements.txt
+
+runs:
+  using: composite
+  steps:
+    - name: Install pip and django dependencies
+      shell: bash
+      run: |
+        python -m pip install --upgrade pip setuptools wheel 
+        python -m pip install -r tests/requirements/py3.txt -e .
